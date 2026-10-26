@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Windows 7 style desktop: soft blue wallpaper + fine glass grain -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap
+            android:gravity="fill"
+            android:src="@drawable/aero_wallpaper" />
+    </item>
+    <item>
+        <bitmap
+            android:gravity="fill"
+            android:src="@drawable/aero_noise"
+            android:tileMode="repeat" />
+    </item>
+</layer-list>

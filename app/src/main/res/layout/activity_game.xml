@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Game screen: playfield sunk into an Aero well, glass read-outs, glass D-pad -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/aero_desktop"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:background="@drawable/win7_window"
+        android:elevation="8dp"
+        android:orientation="vertical">
+
+        <!-- ================= Window title bar ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="@drawable/win7_titlebar"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="@null"
+                android:src="@drawable/firefly" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Mega Tetris"
+                android:textAppearance="@style/AeroTitleBarText" />
+
+
+        </LinearLayout>
+
+        <!-- ================= Client area ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <!-- Playfield inside the bevel -->
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/panel_inset_dark"
+                    android:padding="5dp">
+
+                    <com.example.tetris.GameView
+                        android:id="@+id/gameView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/board_bg" />
+                </FrameLayout>
+
+                <!-- Right rail -->
+                <LinearLayout
+                    android:layout_width="86dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="NEXT"
+                        android:textAppearance="@style/AeroSectionLabel" />
+
+                    <FrameLayout
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/panel_inset_dark"
+                        android:padding="4dp">
+
+                        <com.example.tetris.NextPieceView
+                            android:id="@+id/nextPieceView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/scoreValue"
+                        style="@style/AeroReadout"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/panel_inset_light"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="Points: 0"
+                        android:textColor="@color/aero_text_strong"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/levelValue"
+                        style="@style/AeroReadout"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/panel_inset_light"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="Level 1"
+                        android:textColor="@color/aero_text_strong"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- D-pad on a glass strip -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/panel_glass"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnLeft"
+                        style="@style/AeroButton.Arrow"
+                        android:layout_width="66dp"
+                        android:layout_height="52dp"
+                        android:text="◀" />
+
+                    <Button
+                        android:id="@+id/btnRotate"
+                        style="@style/AeroButton.Arrow"
+                        android:layout_width="66dp"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="8dp"
+                        android:text="⟳" />
+
+                    <Button
+                        android:id="@+id/btnRight"
+                        style="@style/AeroButton.Arrow"
+                        android:layout_width="66dp"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="8dp"
+                        android:text="▶" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnDown"
+                    style="@style/AeroButton.Arrow"
+                    android:layout_width="66dp"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:text="▼" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

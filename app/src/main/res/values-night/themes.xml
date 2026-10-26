@@ -1,0 +1,31 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Same Aero look at night: Windows 7 Aero does not have a dark mode. -->
+    <style name="Base.Theme.Tetris" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/aero_sky</item>
+        <item name="colorOnPrimary">@color/aero_text_on_blue</item>
+        <item name="colorSecondary">@color/aero_sky_dark</item>
+        <item name="colorOnSecondary">@color/aero_text_on_blue</item>
+        <item name="colorSurface">@color/aero_glass_mid</item>
+        <item name="colorOnSurface">@color/aero_text</item>
+        <item name="colorOutline">@color/aero_border</item>
+        <item name="android:colorAccent">@color/aero_sky</item>
+        <item name="android:textColorPrimary">@color/aero_text</item>
+        <item name="android:textColorSecondary">@color/aero_text_muted</item>
+
+        <item name="android:fontFamily">@font/selawik</item>
+        <item name="android:windowBackground">@drawable/aero_desktop</item>
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/aero_status_bar</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <item name="android:windowContentTransitions">true</item>
+
+        <!-- Cold-start splash (API 31+) so the launch matches the Aero look -->
+        <item name="android:windowSplashScreenBackground" tools:targetApi="31">@color/aero_sky_deep</item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="31">@drawable/firefly</item>
+        <item name="android:windowSplashScreenIconBackgroundColor" tools:targetApi="31">@android:color/transparent</item>
+    </style>
+</resources>

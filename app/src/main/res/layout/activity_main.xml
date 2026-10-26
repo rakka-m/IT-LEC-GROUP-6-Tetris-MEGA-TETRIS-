@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Main menu: Aero desktop + single glossy window -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/aero_desktop"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@drawable/win7_window"
+        android:elevation="8dp"
+        android:orientation="vertical">
+
+        <!-- ================= Window title bar ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="@drawable/win7_titlebar"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="@null"
+                android:src="@drawable/firefly" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Mega Tetris"
+                android:textAppearance="@style/AeroTitleBarText" />
+        </LinearLayout>
+
+        <!-- ================= Client area ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp">
+
+            <!-- Artwork in a glass photo frame, centered at its natural ratio -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="14dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/frame_photo"
+                    android:padding="7dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="Mega Tetris"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/tetris_cover" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Primary action -->
+            <Button
+                android:id="@+id/btnPlay"
+                style="@style/AeroButton.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:text="Play"
+                android:textSize="22sp" />
+
+            <!-- Secondary navigation (white glass) -->
+            <Button
+                android:id="@+id/btnSetLanguage"
+                style="@style/AeroButton"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="8dp"
+                android:text="Set Difficulty" />
+
+            <Button
+                android:id="@+id/btnTopScore"
+                style="@style/AeroButton"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="8dp"
+                android:text="Top Score" />
+
+            <Button
+                android:id="@+id/btnPreferences"
+                style="@style/AeroButton"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="8dp"
+                android:text="Credits" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

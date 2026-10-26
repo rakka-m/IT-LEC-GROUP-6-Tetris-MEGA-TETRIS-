@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Row background for radio choices -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="5dp" />
+            <gradient
+                android:angle="270"
+                android:startColor="#CCDCEEFB"
+                android:endColor="#66EAF4FD" />
+            <stroke
+                android:width="1dp"
+                android:color="#803D9BE9" />
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="5dp" />
+            <solid android:color="@color/aero_row_hover" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="5dp" />
+            <solid android:color="#00FFFFFF" />
+        </shape>
+    </item>
+</selector>

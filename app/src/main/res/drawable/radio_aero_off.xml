@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Unchecked Aero radio button -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <size
+                android:width="22dp"
+                android:height="22dp" />
+            <gradient
+                android:angle="270"
+                android:startColor="#FFFFFF"
+                android:endColor="#CFE0EE" />
+            <stroke
+                android:width="1dp"
+                android:color="#7E9FB8" />
+        </shape>
+    </item>
+    <item
+        android:bottom="3dp"
+        android:left="3dp"
+        android:right="3dp"
+        android:top="3dp">
+        <shape android:shape="oval">
+            <stroke
+                android:width="1dp"
+                android:color="#99FFFFFF" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- White glass Aero button, normal state -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="5dp" />
+            <solid android:color="#87A9C4" />
+        </shape>
+    </item>
+    <item
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="4dp" />
+            <gradient
+                android:angle="270"
+                android:startColor="#FFFFFFFF"
+                android:centerColor="#F1F8FE"
+                android:endColor="#C9DDEC" />
+        </shape>
+    </item>
+    <!-- specular gloss over the top half -->
+    <item
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="4dp" />
+            <gradient
+                android:angle="270"
+                android:startColor="#E6FFFFFF"
+                android:centerColor="#00FFFFFF"
+                android:endColor="#00FFFFFF" />
+        </shape>
+    </item>
+    <!-- bottom inner shade -->
+    <item
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="4dp" />
+            <gradient
+                android:angle="270"
+                android:startColor="#00000000"
+                android:centerColor="#00000000"
+                android:endColor="#1F000000" />
+        </shape>
+    </item>
+</layer-list>

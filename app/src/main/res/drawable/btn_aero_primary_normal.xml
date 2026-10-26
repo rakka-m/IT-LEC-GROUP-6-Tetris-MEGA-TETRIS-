@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sky blue Aero button (primary action), normal state -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="5dp" />
+            <solid android:color="#0B4472" />
+        </shape>
+    </item>
+    <item
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="4dp" />
+            <gradient
+                android:angle="270"
+                android:startColor="#BFE6FB"
+                android:centerColor="#5CB4ED"
+                android:endColor="#1B6FB0" />
+        </shape>
+    </item>
+    <!-- gloss -->
+    <item
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="4dp" />
+            <gradient
+                android:angle="270"
+                android:startColor="#B3FFFFFF"
+                android:centerColor="#1AFFFFFF"
+                android:endColor="#00FFFFFF" />
+        </shape>
+    </item>
+    <!-- bottom shade -->
+    <item
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="4dp" />
+            <gradient
+                android:angle="270"
+                android:startColor="#00000000"
+                android:centerColor="#00000000"
+                android:endColor="#33000000" />
+        </shape>
+    </item>
+</layer-list>

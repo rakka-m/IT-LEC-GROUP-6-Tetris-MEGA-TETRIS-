@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#ECECEC</color>
+    <color name="board_bg">#101923</color>
+    <color name="grid_line">#f0eded</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="button_bg">#FCFB9A</color>
+    <color name="level_bar">#171717</color>
+
+    <color name="header_blue">#1E5F94</color>
+    <color name="home_bg">#EAF4FC</color>
+    <color name="title_green">#2FCC4A</color>
+    <color name="btn_play_gray">#D9E7F3</color>
+    <color name="btn_language_blue">#3D9BE9</color>
+    <color name="btn_topscore_purple">#6EA8D8</color>
+    <color name="btn_preferences_pink">#8FB4D2</color>
+
+    <color name="tile_red">#E53935</color>
+    <color name="tile_orange">#FB8C00</color>
+    <color name="tile_yellow">#FDD835</color>
+    <color name="tile_green">#43A047</color>
+    <color name="tile_blue">#1E88E5</color>
+    <color name="tile_purple">#8E24AA</color>
+    <color name="tile_pink">#F06292</color>
+
+    <!-- ===================== Windows 7 Aero palette ===================== -->
+    <color name="aero_sky">#3D9BE9</color>
+    <color name="aero_sky_dark">#12609E</color>
+    <color name="aero_sky_deep">#0B4472</color>
+
+    <color name="aero_text">#1B3A52</color>
+    <color name="aero_text_strong">#0E2B42</color>
+    <color name="aero_text_muted">#5A7589</color>
+    <color name="aero_text_disabled">#9DB2C3</color>
+    <color name="aero_text_on_blue">#FFFFFF</color>
+
+    <color name="aero_border">#8FB4D2</color>
+    <color name="aero_border_soft">#B6CFE2</color>
+    <color name="aero_border_dark">#6E8CA6</color>
+    <color name="aero_highlight">#F2FFFFFF</color>
+
+    <color name="aero_glass_top">#FDFEFF</color>
+    <color name="aero_glass_mid">#EFF7FD</color>
+    <color name="aero_glass_bottom">#C9DDEC</color>
+
+    <color name="aero_field">#DCEBF7</color>
+    <color name="aero_field_top">#C3D6E6</color>
+
+    <color name="aero_well_top">#24303C</color>
+    <color name="aero_well_bottom">#0B1117</color>
+    <color name="aero_well_border">#6E8CA6</color>
+
+    <color name="aero_green">#4CC24C</color>
+    <color name="aero_shadow">#33000000</color>
+    <color name="aero_row_hover">#2E3D9BE9</color>
+    <color name="aero_status_bar">#E4F0FA</color>
+</resources>

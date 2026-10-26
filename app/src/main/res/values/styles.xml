@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ==================== Typography ==================== -->
+    <style name="AeroText">
+        <item name="android:fontFamily">@font/selawik</item>
+        <item name="android:textColor">@color/aero_text</item>
+    </style>
+
+    <style name="AeroTitleBarText" parent="AeroText">
+        <item name="android:fontFamily">@font/selawik_semibold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/aero_text_strong</item>
+        <item name="android:shadowColor">#B3FFFFFF</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+        <item name="android:letterSpacing">0.005</item>
+    </style>
+
+    <style name="AeroHeading" parent="AeroText">
+        <item name="android:fontFamily">@font/selawik_semibold</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/aero_text_strong</item>
+    </style>
+
+    <style name="AeroBody" parent="AeroText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <style name="AeroCaption" parent="AeroText">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/aero_text_muted</item>
+        <item name="android:letterSpacing">0.04</item>
+    </style>
+
+    <style name="AeroSectionLabel" parent="AeroText">
+        <item name="android:fontFamily">@font/selawik_semibold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/aero_sky_dark</item>
+        <item name="android:letterSpacing">0.14</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="AeroReadout" parent="AeroText">
+        <item name="android:fontFamily">@font/selawik_semibold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AeroRadio" parent="AeroText">
+        <item name="android:textSize">16sp</item>
+        <!-- Use a compound drawable instead of android:button: framework button tinting
+             would flatten our glossy Aero bead into one solid colour. -->
+        <item name="android:button">@null</item>
+        <item name="android:drawableStart">@drawable/radio_aero</item>
+        <item name="android:background">@drawable/row_radio</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingTop">9dp</item>
+        <item name="android:paddingBottom">9dp</item>
+        <item name="android:textColor">@color/aero_radio_text</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!-- ==================== Buttons ==================== -->
+    <style name="AeroButton" parent="Widget.Material3.Button">
+        <item name="android:background">@drawable/btn_aero</item>
+        <item name="android:backgroundTint">@null</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:textColor">@color/aero_btn_text</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/selawik</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="rippleColor">@android:color/transparent</item>
+    </style>
+
+    <!-- Sky blue: the one primary action on a screen -->
+    <style name="AeroButton.Primary" parent="AeroButton">
+        <item name="android:background">@drawable/btn_aero_primary</item>
+        <item name="android:textColor">@color/aero_btn_text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">#66000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+    <!-- D-pad keys: glyphs must come from the system font (Selawik has no arrows) -->
+    <style name="AeroButton.Arrow" parent="AeroButton">
+        <item name="android:background">@drawable/btn_aero</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/aero_arrow_text</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- ==================== Legacy helpers ==================== -->
+    <style name="LetterTile">
+        <item name="android:layout_width">28dp</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>
