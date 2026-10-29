@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
@@ -22,6 +23,22 @@ public class GameView extends View {
     private GameListener listener;
     private int lastLevel = 1;
     private boolean gameOverNotified = false;              // ← BAGO: para isang beses lang tumawag ang onGameOver
+    private boolean userPaused = false;                    // ← BAGO: true kapag pinindot ng user ang Pause button
+    private final Paint overlayPaint = new Paint();        // ← BAGO: madilim na takip sa grid kapag Game Over
+    private final Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);   // ← BAGO: teksto ng Game Over
+    private boolean blinkOn = true;                        // ← BAGO: true = kita ang mga piyesa, false = nakatago (blink habang Pause)
+    private static final long BLINK_INTERVAL_MS = 400;     // ← BAGO: bilis ng pagkislap
+
+    // ← BAGO: nagpapakislap sa lahat ng piyesa habang naka-Pause
+    private final Runnable blinkRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (!userPaused) return;
+            blinkOn = !blinkOn;
+            invalidate();
+            handler.postDelayed(this, BLINK_INTERVAL_MS);
+        }
+    };
 
     public interface GameListener {
         void onScoreChanged(int score, int level);
@@ -46,6 +63,10 @@ public class GameView extends View {
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
         board = new Board();
+        overlayPaint.setColor(Color.parseColor("#CC000000"));
+        textPaint.setColor(Color.WHITE);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTypeface(Typeface.DEFAULT_BOLD);
     }
 
     /** Nagpapaalam sa listener ng score, nabura na linya, at level up. */
@@ -84,7 +105,7 @@ public class GameView extends View {
     }
 
     public void start() {
-        if (board.isGameOver()) return;                    // ← BAGO: huwag ibalik ang timer kapag tapos na
+        if (board.isGameOver() || userPaused) return;      // ← huwag ibalik ang timer kapag tapos na o naka-Pause
         running = true;
         handler.removeCallbacks(dropRunnable);
         handler.postDelayed(dropRunnable, board.dropIntervalMs());
@@ -95,7 +116,43 @@ public class GameView extends View {
         handler.removeCallbacks(dropRunnable);
     }
 
+    /** ← BAGO: Pause / Resume galing sa button. */
+    public void setUserPaused(boolean paused) {
+        if (board.isGameOver()) return;
+        if (paused) {
+            userPaused = true;
+            pause();
+            blinkOn = false;                               // ← BAGO: magsisimulang kumislap
+            invalidate();
+            handler.removeCallbacks(blinkRunnable);
+            handler.postDelayed(blinkRunnable, BLINK_INTERVAL_MS);
+        } else {
+            userPaused = false;
+            stopBlink();                                   // ← BAGO: hihinto ang pagkislap
+            start();
+        }
+    }
+
+    public boolean isUserPaused() {
+        return userPaused;
+    }
+
+    /** ← BAGO: itigil ang pagkislap at ibalik ang mga piyesa sa kita. */
+    private void stopBlink() {
+        handler.removeCallbacks(blinkRunnable);
+        blinkOn = true;
+        invalidate();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        handler.removeCallbacks(blinkRunnable);
+        super.onDetachedFromWindow();
+    }
+
     public void restart() {
+        userPaused = false;
+        stopBlink();
         board.reset();
         lastLevel = 1;
         gameOverNotified = false;                          // ← BAGO
@@ -105,25 +162,25 @@ public class GameView extends View {
     }
 
     public void moveLeft() {
-        if (board.isGameOver()) return;
+        if (board.isGameOver() || userPaused) return;
         board.moveLeft();
         invalidate();
     }
 
     public void moveRight() {
-        if (board.isGameOver()) return;
+        if (board.isGameOver() || userPaused) return;
         board.moveRight();
         invalidate();
     }
 
     public void rotate() {
-        if (board.isGameOver()) return;
+        if (board.isGameOver() || userPaused) return;
         board.rotate();
         invalidate();
     }
 
     public void softDropOnce() {
-        if (board.isGameOver()) return;
+        if (board.isGameOver() || userPaused) return;
         board.softDrop();
         invalidate();
         notifyListener();
@@ -131,7 +188,7 @@ public class GameView extends View {
     }
 
     public void hardDrop() {
-        if (board.isGameOver()) return;
+        if (board.isGameOver() || userPaused) return;
         board.hardDrop();
         invalidate();
         notifyListener();
@@ -160,16 +217,17 @@ public class GameView extends View {
         }
 
         int[][] grid = board.getGrid();
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
-                if (grid[r][c] != 0) {
-                    drawCell(canvas, offsetX, r, c, cellSize, grid[r][c]);
+        if (blinkOn)                                       // ← BAGO: nakatago ang mga piyesa kapag "off" ang kislap
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    if (grid[r][c] != 0) {
+                        drawCell(canvas, offsetX, r, c, cellSize, grid[r][c]);
+                    }
                 }
             }
-        }
 
         Tetromino current = board.getCurrent();
-        if (current != null) {
+        if (current != null && blinkOn) {                  // ← BAGO: kasama sa kislap ang bumabagsak na piyesa
             int rotation = board.getCurrentRotation();
             int baseRow = board.getCurrentRow();
             int baseCol = board.getCurrentCol();
@@ -184,6 +242,21 @@ public class GameView extends View {
                     }
                 }
             }
+        }
+
+        // ← BAGO: Game Over message sa loob mismo ng grid
+        if (board.isGameOver()) {
+            float boardHeightPx = cellSize * rows;
+            canvas.drawRect(offsetX, 0, offsetX + boardWidthPx, boardHeightPx, overlayPaint);
+
+            float centerX = offsetX + boardWidthPx / 2f;
+            float centerY = boardHeightPx / 2f;
+
+            textPaint.setTextSize(boardWidthPx * 0.12f);
+            canvas.drawText("Game Over!", centerX, centerY - boardWidthPx * 0.02f, textPaint);
+
+            textPaint.setTextSize(boardWidthPx * 0.07f);
+            canvas.drawText("Click to try again", centerX, centerY + boardWidthPx * 0.10f, textPaint);
         }
     }
 

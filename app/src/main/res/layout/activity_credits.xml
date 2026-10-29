@@ -69,13 +69,6 @@
                     android:textColor="@color/aero_sky_dark"
                     android:textSize="26sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Version 1.0"
-                    android:textAppearance="@style/AeroCaption" />
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -111,36 +104,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="IT Professional Elective 1"
-                    android:textAppearance="@style/AeroBody" />
-
-                <!-- Music -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:text="Music and sound effects"
-                    android:textAppearance="@style/AeroSectionLabel" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="[Pamagat ng tugtog, artist o source]"
-                    android:textAppearance="@style/AeroBody" />
-
-                <!-- Artwork -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:text="Artwork"
-                    android:textAppearance="@style/AeroSectionLabel" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="[Cover art, artist o source]"
                     android:textAppearance="@style/AeroBody" />
 
                 <!-- Tools -->

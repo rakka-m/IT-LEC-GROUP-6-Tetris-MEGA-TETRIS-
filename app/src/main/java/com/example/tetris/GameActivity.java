@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +19,7 @@ public class GameActivity extends AppCompatActivity implements GameView.GameList
     private NextPieceView nextPieceView;
     private TextView scoreValue;
     private TextView levelValue;
+    private Button btnPause;                                   // ← BAGO
 
     // ---------- Tunog ----------
     private SoundPool soundPool;
@@ -33,7 +34,7 @@ public class GameActivity extends AppCompatActivity implements GameView.GameList
     private final Runnable downRepeat = new Runnable() {
         @Override
         public void run() {
-            if (gameView.getBoard().isGameOver()) return;  // hihinto kapag Game Over
+            if (gameView.getBoard().isGameOver() || gameView.isUserPaused()) return;  // hihinto kapag Game Over o Pause
             gameView.softDropOnce();
             holdHandler.postDelayed(this, HOLD_REPEAT_MS);
         }
@@ -55,9 +56,37 @@ public class GameActivity extends AppCompatActivity implements GameView.GameList
         nextPieceView = findViewById(R.id.nextPieceView);
         scoreValue = findViewById(R.id.scoreValue);
         levelValue = findViewById(R.id.levelValue);
+        btnPause = findViewById(R.id.pauseBtn);                // ← BAGO
 
         gameView.setListener(this);
         gameView.getBoard().setDifficulty(DifficultyActivity.loadDifficulty(this));   // ← BAGO: difficulty
+
+        // ← BAGO: Pause / Resume button
+        btnPause.setOnClickListener(v -> {
+            if (gameView.getBoard().isGameOver()) return;
+            playSfx(sfxButton);                                // ← BAGO: tunog ng button controller, pang-Pause at pang-Resume
+            boolean pausing = !gameView.isUserPaused();
+            gameView.setUserPaused(pausing);
+            holdHandler.removeCallbacks(downRepeat);
+            if (pausing) {
+                btnPause.setText("Resume");
+                if (bgMusic != null) bgMusic.pause();
+            } else {
+                btnPause.setText("Pause");
+                if (bgMusic != null) bgMusic.start();
+            }
+        });
+
+        // ← BAGO: i-tap ang grid kapag Game Over para mag-restart (score balik sa 0)
+        gameView.setOnClickListener(v -> {
+            if (!gameView.getBoard().isGameOver()) return;
+            gameView.restart();
+            btnPause.setText("Pause");
+            if (bgMusic != null) {
+                bgMusic.seekTo(0);
+                bgMusic.start();
+            }
+        });
 
         // ◀ ▶ ⟳ : isang pindot = isang galaw + tunog
         findViewById(R.id.btnLeft).setOnClickListener(v -> {
@@ -77,7 +106,7 @@ public class GameActivity extends AppCompatActivity implements GameView.GameList
         findViewById(R.id.btnDown).setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    if (gameView.getBoard().isGameOver()) return true;   // Game Over na, walang tunog/galaw
+                    if (gameView.getBoard().isGameOver() || gameView.isUserPaused()) return true;   // Game Over / Pause, walang tunog/galaw
                     v.setPressed(true);
                     gameView.softDropOnce();                              // isang hakbang agad
                     playButtonSfx();                                   // tunog, isang beses lang
@@ -101,7 +130,7 @@ public class GameActivity extends AppCompatActivity implements GameView.GameList
     protected void onResume() {
         super.onResume();
         gameView.start();
-        if (bgMusic != null) bgMusic.start();
+        if (bgMusic != null && !gameView.isUserPaused() && !gameView.getBoard().isGameOver()) bgMusic.start();
     }
 
     @Override
@@ -139,14 +168,9 @@ public class GameActivity extends AppCompatActivity implements GameView.GameList
         holdHandler.removeCallbacks(downRepeat);
         if (bgMusic != null) bgMusic.pause();
 
-        int finalScore = gameView.getBoard().getScore();                    // ← BAGO: top score
-        boolean isNewRecord = ScoreManager.saveIfHighScore(this, finalScore);
-
-        if (isNewRecord) {
-            Toast.makeText(this, "Game Over! New Top Score: " + finalScore, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "Game Over! Score: " + finalScore, Toast.LENGTH_LONG).show();
-        }
+        int finalScore = gameView.getBoard().getScore();                    // top score, sine-save pa rin
+        ScoreManager.saveIfHighScore(this, finalScore);
+        // ← BAGO: wala nang Toast; ang "Game Over! Click to try again" ay iginuguhit na sa loob ng grid (GameView)
     }
 
     @Override
@@ -184,7 +208,7 @@ public class GameActivity extends AppCompatActivity implements GameView.GameList
 
     /** Tunog ng mga button, tumutunog lang kapag hindi pa Game Over. */
     private void playButtonSfx() {
-        if (gameView.getBoard().isGameOver()) return;
+        if (gameView.getBoard().isGameOver() || gameView.isUserPaused()) return;
         playSfx(sfxButton);
     }
 }
