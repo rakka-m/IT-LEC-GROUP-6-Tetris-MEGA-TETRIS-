@@ -1,6 +1,6 @@
 # Mega Tetris
 
-An Android Tetris game built with **Java** and **XML layouts** in **Android Studio**, with a Windows 7 Aero-style look.
+An Android Tetris game built with **Java** and **XML layouts** in **Android Studio**.
 
 **IT LEC - Group 6**
 
@@ -71,9 +71,12 @@ Hard drop adds 2 points per row. The level goes up every 10 lines cleared.
 
 ## Group 6 Members
 
-| Name | Role |
-|------|------|
-| _Member 1 name_ | _e.g. Programmer_ |
-| _Member 2 name_ | _e.g. UI Designer_ |
-| _Member 3 name_ | _e.g. Tester_ |
-| _Member 4 name_ | _e.g. Documentation_ |
+Leader: Medina, Emmanuel Jacinto M.
+Members:
+- Jusayan Alwin Gabriel
+- Camaclang, Kimberly
+- Galenzoga, Keisha Chloe
+- Gerodias, Eisen
+- Seguron, Nicole Alfaro
+- Espela, Kurt Edcel
+   
