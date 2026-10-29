@@ -8,8 +8,8 @@ An Android Tetris game built with **Java** and **XML layouts** in **Android Stud
 
 <p align="center">
   <img src="1000005312.jpg" alt="Mega Tetris screenshot 1" width="200">
-  <img src="1000005314.jpg" alt="Mega Tetris screenshot 2" width="200">
-  <img src="1000005315.jpg" alt="Mega Tetris screenshot 3" width="200">
+  <img src="1000005315.jpg" alt="Mega Tetris screenshot 2" width="200">
+  <img src="1000005314.jpg" alt="Mega Tetris screenshot 3" width="200">
   <img src="1000005316.jpg" alt="Mega Tetris screenshot 4" width="200">
 </p>
 
